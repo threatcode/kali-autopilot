@@ -10,6 +10,18 @@ import wx, sqlite3, os
 import wx.grid
 # end wxGlade
 
+# Set up working directory
+homedir = os.path.expanduser( '~' )
+dbdir = homedir + "/.kali-autopilot/"
+dbfile = "kali-autopilot.db"
+db = dbdir + dbfile
+
+if not os.path.exists(dbdir):
+      
+    # if the demo_folder directory is not present 
+    # then create it.
+    os.makedirs(dbdir)
+
 # begin wxGlade: extracode
 # end wxGlade
 shelly=["","","","","","","","","","","",""]
@@ -246,7 +258,7 @@ class Autaki(wx.Frame):
         self.lscript.SetLabel(script)
         self.gr_ip.ClearGrid()
         self.gr_attack.ClearGrid()    
-        conn=sqlite3.connect("autaki.db")
+        conn=sqlite3.connect(db)
         curse = conn.cursor()
         curse.execute("SELECT * FROM ip WHERE script=?",[script]) 
         rows=curse.fetchall()
@@ -275,7 +287,7 @@ class Autaki(wx.Frame):
         conn=None
         self.lb_scripts.Clear()
         try:
-            conn=sqlite3.connect("autaki.db")
+            conn=sqlite3.connect(db)
             print("Using SQLite "+sqlite3.version)
             curse=conn.cursor() 
             sqstr="CREATE TABLE IF NOT EXISTS scripts (script text PRIMARY KEY)"
@@ -293,7 +305,7 @@ class Autaki(wx.Frame):
                 self.lb_scripts.SetSelection(0)
                 scriptname=self.lb_scripts.GetString(0)
                 self.show_script(scriptname)   
-        except Error as e:
+        except OSError as e:
             print(e)
         finally:
             if conn:
@@ -308,7 +320,7 @@ class Autaki(wx.Frame):
         self.lb_scripts.Append(pdata)
         self.lb_scripts.SetStringSelection(pdata)
         self.lscript.SetLabel(pdata)
-        conn=sqlite3.connect("autaki.db")
+        conn=sqlite3.connect(db)
         curse = conn.cursor()
         curse.execute("INSERT INTO scripts(script) VALUES('"+pdata+"')")
         conn.commit()
@@ -322,7 +334,7 @@ class Autaki(wx.Frame):
         dlg=wx.MessageDialog(None,"Do you want to delete "+listname+"?","Confirm",wx.YES_NO)
         if dlg.ShowModal()==wx.ID_YES:
             self.lb_scripts.Delete(listno)
-            conn=sqlite3.connect("autaki.db")
+            conn=sqlite3.connect(db)
             curse = conn.cursor()
             curse.execute("DELETE FROM scripts WHERE script='"+listname+"'")   
             conn.commit()
@@ -347,7 +359,7 @@ class Autaki(wx.Frame):
         event.Skip()
         
     def on_ip_save(self, event):  # wxGlade: Autaki.<event_handler>
-        conn=sqlite3.connect("autaki.db")
+        conn=sqlite3.connect(db)
         curse = conn.cursor()
         scriptname=self.lscript.GetLabel()
         curse.execute("DELETE FROM ip WHERE script=?",[scriptname])   
@@ -365,7 +377,7 @@ class Autaki(wx.Frame):
         event.Skip()
 
     def on_script_save(self, event):  # wxGlade: Autaki.<event_handler>
-        conn=sqlite3.connect("autaki.db")
+        conn=sqlite3.connect(db)
         curse = conn.cursor()
         scriptname=self.lscript.GetLabel()
         curse.execute("DELETE FROM attack WHERE script=?",[scriptname])   
@@ -401,8 +413,8 @@ class Autaki(wx.Frame):
            delay2=int(self.tc_delay2.GetValue())        
         f=open(self.lscript.GetLabel()+".py","w")
         f.write("#!/usr/bin/python3\n")
-        f.write("#Autaki Generated\n")
-        f.write("#----------------\n")
+        f.write("#Kali-Autopilot Generated\n")
+        f.write("#------------------------\n")
         f.write("from cmd import Shell\n")
         f.write("import paramiko\n")
         f.write("from helper import temp_smb_server\n")
