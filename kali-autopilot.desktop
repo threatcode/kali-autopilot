@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Kali Autopilot
+Comment= Automated Kali Attack Platform
+Exec=kali-autopilot
+Terminal=false
+Type=Application
+Icon=kali-autopilot
+OnlyShowIn=XFCE
+Categories=08-exploitation-tools;
+Keywords=autopilot;kali-purple;
