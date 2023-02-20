@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: kali-autopilot
 Source: https://gitlab.com/kalilinux/packages/kali-autopilot.git
+Upstream-Name: kali-autopilot
 
 Files: *
 Copyright: 2015-2020 Offensive Security
@@ -16,8 +16,7 @@ License: GPL-3.0+
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this package; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ along with this program. If not, see <https://www.gnu.org/licenses/>
  .
  On Debian systems, the complete text of the GNU General
  Public License can be found in `/usr/share/common-licenses/GPL-3'.
