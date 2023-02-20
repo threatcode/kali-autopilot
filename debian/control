@@ -8,6 +8,7 @@ Rules-Requires-Root: no
 Build-Depends:
  debhelper-compat (= 13),
 Standards-Version: 4.6.1
+Homepage: https://gitlab.com/kalilinux/packages/kali-autopilot
 Vcs-Git: https://gitlab.com/kalilinux/packages/kali-autopilot.git
 Vcs-Browser: https://gitlab.com/kalilinux/packages/kali-autopilot
 
