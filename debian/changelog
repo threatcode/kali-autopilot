@@ -1,3 +1,10 @@
+kali-autopilot (1.2) kali-dev; urgency=medium
+
+  * Unhide working directory
+  * Use custom buttons
+
+ -- Carsten Boeving <re4son@kali.org>  Mon, 20 Feb 2023 14:48:08 +1100
+
 kali-autopilot (1.1) kali-dev; urgency=medium
 
   * Move db to ~/.kali-autopilot/kali-autopilot.db 
