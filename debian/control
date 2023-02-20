@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Malcolm Shore <m.shore@offensive-security.com>
 Uploaders:
  Carsten Boeving <re4son@kali.org>,
+Rules-Requires-Root: no
 Build-Depends:
  debhelper-compat (= 13),
 Standards-Version: 4.6.1
@@ -13,11 +14,11 @@ Vcs-Browser: https://gitlab.com/kalilinux/packages/kali-autopilot
 Package: kali-autopilot
 Architecture: all
 Depends:
- python3,
  python3-easygui,
  python3-wxgtk4.0,
+ python3:any,
  ${misc:Depends},
-Description: Kali Autopilot
+Description: tool for automatic attack scripts in Kali
  Kali Autopilot is a tool to help develop automatic attack scripts 
  for red and purple teaming.
  .
